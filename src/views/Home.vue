@@ -152,7 +152,7 @@ const executeCommand = async () => {
     if (!rawInput && gameStatus.value !== 'password') return;
 
     if (gameStatus.value === 'password') {
-        terminalHistory.value.push({ type: 'input', text: `${terminalPrefix.value}` });
+        terminalHistory.value.push({ type: 'input', text: `${terminalPrefix.value}` }); // Esconde a senha digitada
     } else {
         terminalHistory.value.push({ type: 'input', text: `${terminalPrefix.value}${rawInput}` });
     }
@@ -160,6 +160,7 @@ const executeCommand = async () => {
     const args = rawInput.split(' ').filter(Boolean);
     const cmd = args[0] ? args[0].toLowerCase() : '';
 
+    // Lógica para sair do jogo
     if ((cmd === 'quit' || cmd === 'exit') && gameStatus.value !== 'inactive') {
         gameStatus.value = 'inactive';
         terminalPrefix.value = 'root@elliton:~$ ';
@@ -170,21 +171,24 @@ const executeCommand = async () => {
         return;
     }
 
+    // Seleção de Dificuldade
     if (gameStatus.value === 'select_diff') {
         if (cmd === 'facil' || cmd === 'fácil') {
             gameDifficulty.value = 'facil';
             gameStatus.value = 'playing';
             terminalPrefix.value = 'guest@ctf-server:~$ ';
-            terminalHistory.value.push({ type: 'output', text: '[!] MODO FÁCIL: Comandos de dicas ativados.\n\n[ Conectado a 192.168.1.104 ]\nBem-vindo ao servidor corporativo. Você está logado como "guest".\nObjetivo: Encontrar a senha e escalar privilégios para "root".\nDica inicial: Digite "hint" se não souber por onde começar.' });
+            terminalHistory.value.push({ type: 'output', text: '[!] MODO FÁCIL: Comandos de dicas ativados.\n\n[ Conectado a 192.168.1.104 ]\nBem-vindo ao servidor de homologação. Você está logado como "guest".\nObjetivo: Escalar privilégios para "root" usando falhas de configuração.\nDica inicial: Digite "hint" se não souber por onde começar.' });
         } else if (cmd === 'dificil' || cmd === 'difícil') {
             gameDifficulty.value = 'dificil';
             gameStatus.value = 'playing';
             terminalPrefix.value = 'guest@ctf-server:~$ ';
-            terminalHistory.value.push({ type: 'output', text: '[!] MODO DIFÍCIL: Dicas desativadas. Você está por conta própria.\n\n[ Conectado a 192.168.1.104 ]\nBem-vindo ao servidor corporativo. Você está logado como "guest".\nObjetivo: Encontrar a senha e escalar privilégios para "root".' });
+            terminalHistory.value.push({ type: 'output', text: '[!] MODO DIFÍCIL: Dicas desativadas. Você está por conta própria.\n\n[ Conectado a 192.168.1.104 ]\nBem-vindo ao servidor de homologação. Você está logado como "guest".\nObjetivo: Escalar privilégios para "root". Enumerar é a chave.' });
         } else {
             terminalHistory.value.push({ type: 'output', text: 'Dificuldade não reconhecida. Digite "facil" ou "dificil".' });
         }
     }
+    
+    // Inserção da Senha/Token
     else if (gameStatus.value === 'password') {
         if (rawInput === 'vaca_hacker_2026') {
             gameStatus.value = 'inactive';
@@ -209,49 +213,71 @@ const executeCommand = async () => {
         } else {
             gameStatus.value = 'playing';
             terminalPrefix.value = 'guest@ctf-server:~$ ';
-            terminalHistory.value.push({ type: 'output', text: 'su: Authentication failure' });
+            terminalHistory.value.push({ type: 'output', text: 'sys-recovery: Token inválido ou expirado. Acesso negado.' });
         }
     }
+    
+    // Lógica do Jogo Rodando
     else if (gameStatus.value === 'playing') {
         if (cmd === 'ls') {
             if (args.includes('-a') || args.includes('-la') || args.includes('-al')) {
-                terminalHistory.value.push({ type: 'output', text: '.  ..  .env_backup  notas.txt' });
+                terminalHistory.value.push({ type: 'output', text: '.  ..  .bash_history  .env.backup  notas.txt  readme.md' });
             } else {
-                terminalHistory.value.push({ type: 'output', text: 'notas.txt' });
+                terminalHistory.value.push({ type: 'output', text: 'notas.txt  readme.md' });
             }
-        } else if (cmd === 'cat') {
+        } 
+        else if (cmd === 'cat') {
             const file = args[1];
             if (file === 'notas.txt') {
-                terminalHistory.value.push({ type: 'output', text: 'LEMBRETE DA EQUIPE DEV:\n"Não esquecer de apagar o arquivo oculto de backup das variáveis de ambiente (.env) depois do deploy. O sistema novo está em /root/"' });
-            } else if (file === '.env_backup') {
-                terminalHistory.value.push({ type: 'output', text: 'DB_CONNECTION=postgres\nDB_PASS=123456\nAPI_KEY=xpto987\nROOT_PASS=vaca_hacker_2026' });
+                terminalHistory.value.push({ type: 'output', text: 'LEMBRETE DA EQUIPE DEV:\n"Atenção: Não esquecer de limpar o histórico do terminal e apagar backups de variáveis de ambiente do diretório home após o deploy."' });
+            } else if (file === 'readme.md') {
+                terminalHistory.value.push({ type: 'output', text: '# Servidor de Homologação\nEm caso de perda de acesso administrativo, utilize o utilitário de recuperação do sistema.\nComando: sudo /sbin/sys-recovery\nNota: É necessário possuir o token de autorização atualizado.' });
+            } else if (file === '.bash_history') {
+                terminalHistory.value.push({ type: 'output', text: 'cd /var/www/html\nnano .env\ncp .env /home/guest/.env.backup\nchmod 777 /home/guest/.env.backup\nsudo /sbin/sys-recovery\nexit' });
+            } else if (file === '.env.backup') {
+                terminalHistory.value.push({ type: 'output', text: 'APP_ENV=homolog\nAPP_KEY=base64:xpto987...\nDB_CONNECTION=postgres\nDB_PASS=admin123\nSYS_RECOVERY_TOKEN=vaca_hacker_2026' });
             } else if (!file) {
                 terminalHistory.value.push({ type: 'output', text: 'cat: falta operando de arquivo' });
             } else {
                 terminalHistory.value.push({ type: 'output', text: `cat: ${file}: Arquivo ou diretório inexistente` });
             }
-        } else if (cmd === 'su' && args[1] === 'root') {
-            gameStatus.value = 'password';
-            terminalPrefix.value = 'Password: ';
-        } else if (cmd === 'sudo' && args[1] === 'su') {
-            gameStatus.value = 'password';
-            terminalPrefix.value = 'Password: ';
-        } else if (cmd === 'hint') {
+        } 
+        else if (cmd === 'sudo') {
+            if (args[1] === '-l') {
+                terminalHistory.value.push({ type: 'output', text: 'Matching Defaults entries for guest on ctf-server:\n    env_reset, mail_badpass\n\nUser guest may run the following commands on ctf-server:\n    (root) NOPASSWD: /sbin/sys-recovery' });
+            } else if (args[1] === '/sbin/sys-recovery' || args[1] === 'sys-recovery') {
+                gameStatus.value = 'password';
+                terminalPrefix.value = 'Insira o Token de Recuperação: ';
+            } else {
+                terminalHistory.value.push({ type: 'output', text: `[sudo] password for guest:` });
+                terminalHistory.value.push({ type: 'output', text: `sudo: authentication failure` });
+            }
+        }
+        else if (cmd === 'su') {
+            terminalHistory.value.push({ type: 'output', text: 'su: Authentication failure' });
+        }
+        else if (cmd === 'hint') {
             if (gameDifficulty.value === 'facil') {
-                terminalHistory.value.push({ type: 'output', text: '[DICA] 1. Use "ls" para ver arquivos.\n2. Use "cat <arquivo>" para ler o conteúdo de notas.\n3. A flag "-a" no comando "ls" revela arquivos escondidos.\n4. Após achar a senha, use "su root" para escalar privilégios.' });
+                terminalHistory.value.push({ type: 'output', text: '[DICA] 1. Liste todos os arquivos, inclusive os ocultos (ls -a).\n2. Leia todos os arquivos de texto para entender o contexto.\n3. O histórico do terminal (.bash_history) sempre entrega os passos de quem usou antes.\n4. Se descobrir um comando restrito, use "sudo <comando>".' });
             } else {
                 terminalHistory.value.push({ type: 'output', text: 'bash: hint: comando não habilitado na dificuldade difícil.' });
             }
-        } else if (cmd === 'pwd') {
+        } 
+        else if (cmd === 'pwd') {
             terminalHistory.value.push({ type: 'output', text: '/home/guest' });
-        } else if (cmd === 'whoami') {
+        } 
+        else if (cmd === 'whoami') {
             terminalHistory.value.push({ type: 'output', text: 'guest' });
-        } else if (cmd === 'clear') {
+        } 
+        else if (cmd === 'clear') {
             terminalHistory.value = [];
-        } else {
+        } 
+        else {
             terminalHistory.value.push({ type: 'output', text: `bash: ${cmd}: comando não encontrado no ambiente guest.` });
         }
     }
+    
+    // Lógica do Terminal Padrão (Fora do Jogo)
     else {
         switch (cmd) {
             case 'help':
