@@ -25,3 +25,7 @@ dist-ssr
 
 # Context files
 context.md
+
+# Ignorado automaticamente pelo CLI AI Commit
+commit_pattern.md
+commit_pattern_pt.md
