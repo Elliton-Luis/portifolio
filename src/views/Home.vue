@@ -342,62 +342,62 @@ onMounted(() => {
             class="min-h-screen flex flex-col bg-[#f3f3f3] dark:bg-[#050505] text-[#111111] dark:text-[#f3f3f3] font-sans selection:bg-[#FFD60A] selection:text-[#111111] transition-colors duration-300">
 
             <nav
-    class="border-b-4 border-[#111111] dark:border-[#1a1a1a] sticky top-0 z-40 bg-[#f3f3f3] dark:bg-[#050505] w-full transition-colors duration-300">
-    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+                class="border-b-4 border-[#111111] dark:border-[#1a1a1a] sticky top-0 z-40 bg-[#f3f3f3] dark:bg-[#050505] w-full transition-colors duration-300">
+                <div class="container mx-auto px-6 py-3 flex justify-between items-center">
 
-        <a href="#inicio" class="flex items-center gap-4 z-50 group cursor-pointer">
-            <div class="relative w-12 h-10 flex items-center justify-center">
-                <div
-                    class="absolute inset-0 bg-[#111111] translate-x-[4px] translate-y-[4px] transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[2px]">
+                    <a href="#inicio" class="flex items-center gap-4 z-50 group cursor-pointer">
+                        <div class="relative w-12 h-10 flex items-center justify-center">
+                            <div
+                                class="absolute inset-0 bg-[#111111] translate-x-[4px] translate-y-[4px] transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[2px]">
+                            </div>
+                            <span
+                                class="relative z-10 bg-[#FFD60A] border-2 border-[#111111] text-[#111111] px-3 py-1 font-mono font-bold text-xl flex items-center justify-center w-full h-full transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[2px]">
+                                >_
+                            </span>
+                        </div>
+                        <span class="text-2xl font-black tracking-tight font-sans text-[#111111] dark:text-[#ffffff]">
+                            Elliton Luís
+                        </span>
+                    </a>
+
+                    <button @click="toggleMenu"
+                        class="md:hidden text-3xl text-[#111111] dark:text-[#ffffff] focus:outline-none hover:text-[#FFD60A] transition-colors z-50">
+                        <i :class="isMenuOpen ? 'bi bi-x-lg' : 'bi bi-list'"></i>
+                    </button>
+
+                    <ul class="hidden md:flex gap-6 text-sm font-bold uppercase tracking-wider font-sans items-center">
+                        <li v-for="(item, index) in navItems" :key="index">
+                            <a :href="item.id" :class="[
+                                'group flex items-center px-4 py-2 border-2 transition-all duration-200',
+                                activeSection === item.id.substring(1)
+                                    ? 'border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] text-[#111111] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#000000]'
+                                    : 'border-transparent text-[#111111] dark:text-[#f3f3f3] hover:border-[#111111] dark:hover:border-[#FFD60A] hover:bg-[#FFD60A] dark:hover:bg-[#FFD60A] hover:text-[#111111] dark:hover:text-[#111111] hover:shadow-[3px_3px_0px_0px_#111111] dark:hover:shadow-[3px_3px_0px_0px_#000000]'
+                            ]">
+                                <span class="font-mono font-black mr-2 text-base transition-opacity duration-200"
+                                    :class="activeSection === item.id.substring(1) ? 'opacity-100 text-[#111111]' : 'opacity-0 group-hover:opacity-100 text-[#111111]'">$</span>
+                                {{ item.label }}
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div
+                        class="hidden md:flex gap-4 text-xl border-l-2 border-[#2a2a2a] pl-6 items-center text-[#111111] dark:text-[#f3f3f3]">
+                        <a href="https://github.com/Elliton-Luis" target="_blank"
+                            class="hover:text-[#FFD60A] hover:scale-110 transition-all"><i class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/in/elliton-luis-correia-da-silva-junior-9779452b3"
+                            target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all"><i
+                                class="bi bi-linkedin"></i></a>
+                        <a href="https://wa.me/75999488795" target="_blank"
+                            class="hover:text-[#25D366] hover:scale-110 transition-all"><i
+                                class="bi bi-whatsapp"></i></a>
+
+                        <button @click="toggleTheme"
+                            class="ml-2 bg-[#f3f3f3] dark:bg-[#111111] border-2 border-[#111111] dark:border-[#2a2a2a] px-3 py-1 text-sm font-mono shadow-[2px_2px_0px_0px_#111111] dark:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none hover:bg-[#FFD60A] dark:hover:bg-[#FFD60A] dark:hover:text-[#111111] dark:hover:border-[#111111] transition-all">
+                            <i class="bi" :class="isDark ? 'bi-sun-fill' : 'bi-moon-stars-fill'"></i>
+                        </button>
+                    </div>
                 </div>
-                <span
-                    class="relative z-10 bg-[#FFD60A] border-2 border-[#111111] text-[#111111] px-3 py-1 font-mono font-bold text-xl flex items-center justify-center w-full h-full transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[2px]">
-                    >_
-                </span>
-            </div>
-            <span class="text-2xl font-black tracking-tight font-sans text-[#111111] dark:text-[#ffffff]">
-                Elliton Luís
-            </span>
-        </a>
-
-        <button @click="toggleMenu"
-            class="md:hidden text-3xl text-[#111111] dark:text-[#ffffff] focus:outline-none hover:text-[#FFD60A] transition-colors z-50">
-            <i :class="isMenuOpen ? 'bi bi-x-lg' : 'bi bi-list'"></i>
-        </button>
-
-        <ul class="hidden md:flex gap-6 text-sm font-bold uppercase tracking-wider font-sans items-center">
-            <li v-for="(item, index) in navItems" :key="index">
-                <a :href="item.id" :class="[
-                    'group flex items-center px-4 py-2 border-2 transition-all duration-200',
-                    activeSection === item.id.substring(1)
-                        ? 'border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] text-[#111111] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#000000]'
-                        : 'border-transparent text-[#111111] dark:text-[#f3f3f3] hover:border-[#111111] dark:hover:border-[#FFD60A] hover:bg-[#FFD60A] dark:hover:bg-[#FFD60A] hover:text-[#111111] dark:hover:text-[#111111] hover:shadow-[3px_3px_0px_0px_#111111] dark:hover:shadow-[3px_3px_0px_0px_#000000]'
-                ]">
-                    <span class="font-mono font-black mr-2 text-base transition-opacity duration-200"
-                        :class="activeSection === item.id.substring(1) ? 'opacity-100 text-[#111111]' : 'opacity-0 group-hover:opacity-100 text-[#111111]'">$</span>
-                    {{ item.label }}
-                </a>
-            </li>
-        </ul>
-
-        <div
-            class="hidden md:flex gap-4 text-xl border-l-2 border-[#2a2a2a] pl-6 items-center text-[#111111] dark:text-[#f3f3f3]">
-            <a href="https://github.com/Elliton-Luis" target="_blank"
-                class="hover:text-[#FFD60A] hover:scale-110 transition-all"><i class="bi bi-github"></i></a>
-            <a href="https://www.linkedin.com/in/elliton-luis-correia-da-silva-junior-9779452b3"
-                target="_blank" class="hover:text-[#0A66C2] hover:scale-110 transition-all"><i
-                    class="bi bi-linkedin"></i></a>
-            <a href="https://wa.me/75999488795" target="_blank"
-                class="hover:text-[#25D366] hover:scale-110 transition-all"><i
-                    class="bi bi-whatsapp"></i></a>
-
-            <button @click="toggleTheme"
-                class="ml-2 bg-[#f3f3f3] dark:bg-[#111111] border-2 border-[#111111] dark:border-[#2a2a2a] px-3 py-1 text-sm font-mono shadow-[2px_2px_0px_0px_#111111] dark:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none hover:bg-[#FFD60A] dark:hover:bg-[#FFD60A] dark:hover:text-[#111111] dark:hover:border-[#111111] transition-all">
-                <i class="bi" :class="isDark ? 'bi-sun-fill' : 'bi-moon-stars-fill'"></i>
-            </button>
-        </div>
-    </div>
-</nav>
+            </nav>
 
             <div v-if="isMenuOpen" @click="toggleMenu"
                 class="fixed inset-0 bg-black/80 z-30 md:hidden backdrop-blur-sm transition-opacity duration-300"></div>
@@ -466,7 +466,8 @@ onMounted(() => {
                             <hr class="border-t-4 border-[#111111] dark:border-[#2a2a2a] w-16" />
 
                             <p class="text-lg font-medium leading-relaxed max-w-lg text-[#111111] dark:text-[#f3f3f3]">
-                                Focado na construção de aplicações reais e funcionais. Minha abordagem une a prática constante com o ecossistema <strong
+                                Focado na construção de aplicações reais e funcionais. Minha abordagem une a prática
+                                constante com o ecossistema <strong
                                     class="font-bold text-[#111111] dark:text-[#ffffff]">PHP moderno</strong> à
                                 busca por autonomia em infraestrutura <strong
                                     class="font-bold text-[#111111] dark:text-[#ffffff]">Linux</strong> e integração de
@@ -474,7 +475,8 @@ onMounted(() => {
                             </p>
 
                             <div class="flex flex-col xl:flex-row gap-4 pt-2">
-                                <a href="/curriculo_elliton_luis.pdf" download="Elliton_Luis_CV.pdf"
+                                <a href="/curriculo.pdf"
+                                    download="Elliton_Luis_CV.pdf"
                                     class="px-8 py-3.5 bg-[#ffffff] dark:bg-[#111111] text-[#111111] dark:text-[#ffffff] font-mono font-bold border-2 border-[#111111] dark:border-[#2a2a2a] shadow-[4px_4px_0px_0px_#111111] dark:shadow-[4px_4px_0px_0px_#FFD60A] hover:bg-[#f3f3f3] dark:hover:bg-[#050505] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer">
                                     <i class="bi bi-file-earmark-arrow-down-fill text-lg"></i> Baixar_CV.pdf
                                 </a>
@@ -549,7 +551,8 @@ onMounted(() => {
                                     <i class="bi bi-phone mr-2 text-[#FFD60A]"></i>Mobile-First
                                 </h3>
                                 <p class="text-sm leading-relaxed text-[#111111] dark:text-[#f3f3f3]">Desenvolvimento
-                                    orientado à responsividade, buscando garantir uma boa performance e experiência do usuário (UX) em
+                                    orientado à responsividade, buscando garantir uma boa performance e experiência do
+                                    usuário (UX) em
                                     diferentes dispositivos, priorizando a base mobile.</p>
                             </div>
                             <div
@@ -558,7 +561,8 @@ onMounted(() => {
                                     class="inline-block px-2 py-1 font-mono font-bold text-xl mb-4 bg-[#111111] text-[#ffffff] dark:bg-transparent dark:text-[#ffffff] transition-colors self-start">
                                     <i class="bi bi-diagram-3 mr-2 text-[#FFD60A]"></i>Arquitetura de Sistemas
                                 </h3>
-                                <p class="text-sm leading-relaxed text-[#111111] dark:text-[#f3f3f3]">Modelagem cuidadosa
+                                <p class="text-sm leading-relaxed text-[#111111] dark:text-[#f3f3f3]">Modelagem
+                                    cuidadosa
                                     de regras de negócio, construção de APIs RESTful e organização de bancos de dados
                                     visando aplicações mais escaláveis e de fácil manutenção.</p>
                             </div>
@@ -701,7 +705,9 @@ onMounted(() => {
                                 <h3 class="font-mono font-bold text-xl mt-3 text-[#111111] dark:text-[#ffffff]">feat:
                                     Foco em Ferramentas e IA</h3>
                                 <p class="text-sm mt-2 text-[#111111] dark:text-[#f3f3f3] leading-relaxed max-w-2xl">
-                                    Desenvolvimento de ferramentas como o AIC e o Draftly. Em paralelo, aprendizado em curso de técnicas para melhor utilização e integração de ferramentas de IA no fluxo de desenvolvimento.
+                                    Desenvolvimento de ferramentas como o AIC e o Draftly. Em paralelo, aprendizado em
+                                    curso de técnicas para melhor utilização e integração de ferramentas de IA no fluxo
+                                    de desenvolvimento.
                                 </p>
                             </div>
 
@@ -745,7 +751,8 @@ onMounted(() => {
                                 <h3 class="font-mono font-bold text-xl mt-3 text-[#111111] dark:text-[#ffffff]">feat:
                                     Lógica com Python</h3>
                                 <p class="text-sm mt-2 text-[#111111] dark:text-[#f3f3f3] leading-relaxed max-w-2xl">
-                                    Estudo de Python como evolução da lógica de programação. Foco na resolução de problemas.
+                                    Estudo de Python como evolução da lógica de programação. Foco na resolução de
+                                    problemas.
                                 </p>
                             </div>
 
@@ -876,7 +883,8 @@ onMounted(() => {
                                             Direcionado a construir soluções tecnológicas úteis e escaláveis, <span
                                                 class="bg-[#FFD60A] text-[#111111] px-2 py-0.5 font-bold font-mono text-base shadow-[2px_2px_0px_0px_#ffffff]">minha
                                                 meta contínua</span>
-                                            é evoluir na arquitetura de sistemas, aprimorando ativamente meus conhecimentos em <strong
+                                            é evoluir na arquitetura de sistemas, aprimorando ativamente meus
+                                            conhecimentos em <strong
                                                 class="text-[#ffffff] border-b-2 border-[#FFD60A] pb-0.5">Engenharia de
                                                 Software</strong>,
                                             <strong class="text-[#ffffff] border-b-2 border-[#FFD60A] pb-0.5">IA
@@ -920,7 +928,7 @@ onMounted(() => {
                                                 v-model="terminalInput" @keyup.enter="executeCommand"
                                                 ref="terminalInputRef"
                                                 class="bg-transparent border-none outline-none flex-grow text-[#f3f3f3] caret-[#FFD60A]"
-                                                autocomplete="off" spellcheck="false" autofocus />
+                                                autocomplete="off" spellcheck="false" />
                                         </div>
                                     </div>
                                 </div>
@@ -983,7 +991,7 @@ onMounted(() => {
                     <p class="font-mono text-sm font-bold text-[#111111] dark:text-[#f3f3f3]">
                         Desenvolvido com <span class="text-[#42b883]">Vue.js</span> & TailwindCSS por Elliton Luís © {{
                             new
-                        Date().getFullYear() }}.
+                                Date().getFullYear() }}.
                     </p>
                     <p class="font-mono text-xs text-gray-500 dark:text-gray-400 mt-2">
                         System Status: <span class="text-green-500">All Systems Operational</span>
