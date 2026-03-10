@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+/* =========================
+   CONFIGURAÇÃO TAILWIND V4
+========================= */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================
+   CORES BASE E TEMA
+========================= */
+:root {
+  --linux-yellow: #FFD60A;
+  --linux-black: #111111;
+  --linux-gray: #2a2a2a;
+  --soft-gray: #f3f3f3;
+  --white: #ffffff;
+
+  /* Tecnologias Base */
+  --color-vue: #41b883;
+  --color-laravel: #ff2d20;
+  --color-tailwind: #38bdf8;
+  --color-bootstrap: #7952b3;
+  --color-alpine: #8bc0d0;
+  --color-php: #777bb4;
+  --color-livewire: #fb70a9;
+  --color-java: #f89820;
+  --color-postgres: #336791; /* ADDED POSTGRES */
+  --color-python: #3776ab;   /* ADDED PYTHON */
+
+  /* Sistemas & DevOps */
+  --color-linux: #000000;
+  --color-wsl: #0078D4;
+  --color-virtual: #0891b2;
+
+  /* Fundamentos & CS */
+  --color-html: #e34f26;
+  --color-js: #f7df1e;
+  --color-cs-data: #0ea5e9;
+  --color-cs-algo: #10b981;
+
+  /* IA & Produtividade */
+  --color-ai-rag: #6366f1;
+  --color-ai-embed: #8b5cf6;
+  --color-ai-chunk: #a855f7;
+  --color-ai-agent: #d946ef;
+
+  /* Conceitos e Boas Práticas */
+  --color-concept-arch: #f97316;
+  --color-concept-clean: #14b8a6;
+  --color-concept-sec: #ef4444;
+  --color-concept-agile: #ec4899;
+}
+
+/* =========================
+   UTILITIES PARA TECNOLOGIAS E CONCEITOS
+========================= */
+.bg-vue { background-color: var(--color-vue); }
+.bg-laravel { background-color: var(--color-laravel); }
+.bg-tailwind { background-color: var(--color-tailwind); }
+.bg-bootstrap { background-color: var(--color-bootstrap); }
+.bg-alpine { background-color: var(--color-alpine); }
+.bg-php { background-color: var(--color-php); }
+.bg-livewire { background-color: var(--color-livewire); }
+.bg-java { background-color: var(--color-java); }
+.bg-postgres { background-color: var(--color-postgres); } /* ADDED */
+.bg-python { background-color: var(--color-python); }     /* ADDED */
+
+.bg-linux { background-color: var(--color-linux); }
+.bg-wsl { background-color: var(--color-wsl); }
+.bg-virtual { background-color: var(--color-virtual); }
+
+.bg-html { background-color: var(--color-html); }
+.bg-js { background-color: var(--color-js); }
+.bg-cs-data { background-color: var(--color-cs-data); }
+.bg-cs-algo { background-color: var(--color-cs-algo); }
+
+.bg-ai-rag { background-color: var(--color-ai-rag); }
+.bg-ai-embed { background-color: var(--color-ai-embed); }
+.bg-ai-chunk { background-color: var(--color-ai-chunk); }
+.bg-ai-agent { background-color: var(--color-ai-agent); }
+
+.bg-concept-arch { background-color: var(--color-concept-arch); }
+.bg-concept-clean { background-color: var(--color-concept-clean); }
+.bg-concept-sec { background-color: var(--color-concept-sec); }
+.bg-concept-agile { background-color: var(--color-concept-agile); }
+
+/* =========================
+   FUNDOS DO TEMA GERAL
+========================= */
+.bg-linux-yellow { background-color: var(--linux-yellow); }
+.bg-linux-black { background-color: var(--linux-black); }
+.bg-linux-gray { background-color: var(--linux-gray); }
+.bg-soft-gray { background-color: var(--soft-gray); }
+.bg-white { background-color: var(--white); }
+
+.hover\:bg-linux-yellow:hover { background-color: var(--linux-yellow); }
+.hover\:bg-linux-black:hover { background-color: var(--linux-black); }
+.hover\:bg-soft-gray:hover { background-color: var(--soft-gray); }
+
+/* =========================
+   TEXTO
+========================= */
+.text-linux-yellow { color: var(--linux-yellow); }
+.text-linux-black { color: var(--linux-black); }
+.text-white { color: var(--white); }
+.text-gray { color: #555; }
+
+.highlight-yellow {
+  background-color: var(--linux-yellow);
+  padding: 0 4px;
+  font-weight: bold;
+}
+
+/* =========================
+   SOMBRAS HARD E BORDAS
+========================= */
+.shadow-hard { box-shadow: 6px 6px 0px 0px var(--linux-black); }
+.shadow-hard-sm { box-shadow: 3px 3px 0px 0px var(--linux-black); }
+.hover\:shadow-hard:hover { box-shadow: 6px 6px 0px 0px var(--linux-black); }
+.active\:no-shadow:active { box-shadow: none; transform: translate(3px, 3px); }
+.border-linux { border: 2px solid var(--linux-black); }
+
+/* =========================
+   ANIMAÇÕES E EFEITOS
+========================= */
+.fade-in { animation: fadeIn 0.6s ease forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
