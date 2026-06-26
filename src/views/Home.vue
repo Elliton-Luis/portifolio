@@ -46,8 +46,26 @@ const getImagemUrl = (nomeArquivo) => {
 // --- DADOS DOS PROJETOS ---
 const projetos = ref([
     {
+        nome: 'Logos',
+        descricao: 'Editor de código focado em performance, desenvolvido em Go. Utiliza agentes de IA para modificar arquivos via linguagem natural.',
+        imagem: 'logos.png',
+        techs: ['Go', 'IA', 'CLI']
+    },
+    {
+        nome: 'Synapse',
+        descricao: 'Ferramenta que automatiza e padroniza a geração de mensagens de commit utilizando inteligência artificial, garantindo um histórico limpo.',
+        imagem: 'synapse.png',
+        techs: ['Go', 'IA', 'CLI']
+    },
+    {
+        nome: 'AquinozBot',
+        descricao: 'Assistente educacional no Telegram voltado para acessibilidade. Processa PDFs e links, convertendo-os em resumos e áudios.',
+        imagem: 'aquinozBot.jpeg',
+        techs: ['Python', 'Telegram API', 'IA']
+    },
+    {
         nome: 'FinTrack',
-        descricao: 'Ferramenta de gestão financeira com verificações de saldo, histórico de transações e estatísticas.',
+        descricao: 'Ferramenta de gestão financeira com verificações de saldo, histórico de transações e estatísticas em tempo real.',
         imagem: 'fintrack.png',
         techs: ['Vue.js', 'Laravel', 'Postgres', 'Tailwind']
     },
@@ -65,19 +83,19 @@ const projetos = ref([
     },
     {
         nome: 'Horizo',
-        descricao: 'Dose matinal de informação: aplicação que compila e exibe os dados mais relevantes do cenário brasileiro.',
+        descricao: 'Dose matinal de informação: aplicação que compila e exibe os dados mais relevantes do cenário nacional.',
         imagem: 'horizo.jpeg',
         techs: ['Laravel', 'Blade', 'Tailwind']
     },
     {
         nome: 'AlphaControl',
-        descricao: 'Sistema desktop projetado para automação de processos locais e controle sistêmico profundo do hardware.',
+        descricao: 'Sistema desktop projetado para automação de processos locais e controle sistêmico focado em hardware.',
         imagem: 'alphaControl.png',
         techs: ['Java', 'Swing']
     },
     {
         nome: 'Vitória Vidros',
-        descricao: 'Sistema integrado de gestão, acompanhamento de ordens de serviço e orçamentos para vidraçaria.',
+        descricao: 'Sistema integrado de gestão, acompanhamento de ordens de serviço e geração de orçamentos para vidraçaria.',
         imagem: 'vitoriaVidros.jpeg',
         techs: ['Laravel', 'Livewire', 'Blade', 'Tailwind', 'Alpine.js']
     }
@@ -94,19 +112,25 @@ const getTechClass = (tech) => {
         'Alpine.js': 'bg-alpine text-linux-black',
         'Tailwind': 'bg-tailwind text-linux-black',
         'Bootstrap': 'bg-bootstrap text-white',
-        'Java': 'bg-java text-white',
-        'Swing': 'bg-soft-gray text-linux-black dark:bg-linux-black dark:text-soft-gray',
-        'Python': 'bg-python text-white'
+        'Java': 'bg-[#f89820] text-white',
+        'Swing': 'bg-soft-gray text-linux-black dark:bg-[#333333] dark:text-[#f3f3f3]',
+        'Python': 'bg-[#3776ab] text-white',
+        'Go': 'bg-[#00add8] text-white',
+        'IA': 'bg-[#9333ea] text-white',
+        'CLI': 'bg-[#111111] text-[#FFD60A]',
+        'API': 'bg-[#f3f3f3] text-[#111111]',
+        'Telegram API': 'bg-[#229ED9] text-white',
+        'PHP': 'bg-[#777bb4] text-white'
     };
     return classes[tech] || 'bg-linux-gray text-white dark:bg-white dark:text-linux-black';
 };
 
 // --- DADOS DAS HABILIDADES DO 'SOBRE' (FÁCIL MANUTENÇÃO) ---
 const sobreHabilidades = ref([
-    //{ nome: 'WebSec / OWASP', icone: 'bi-shield-check', cor: 'text-[#4a90e2]', classesExtras: '' },
-    { nome: 'Gitflow', icone: 'bi-git', cor: 'text-[#f14e32]', classesExtras: '' },
-    { nome: 'Solo Scrum', icone: 'bi-kanban', cor: 'text-[#27c93f]', classesExtras: '' },
-    { nome: 'Clean Commits', icone: 'bi-code-square', cor: 'text-[#db2777]', classesExtras: '' },
+    { nome: 'Integrações IA', icone: 'bi-robot', cor: 'text-[#9333ea]', classesExtras: '' },
+    { nome: 'Linux / WSL', icone: 'bi-terminal', cor: 'text-[#f3f3f3]', classesExtras: 'bg-[#111111]' },
+    { nome: 'AppSec Básica', icone: 'bi-shield-check', cor: 'text-[#4a90e2]', classesExtras: '' },
+    { nome: 'Gitflow & Commits', icone: 'bi-git', cor: 'text-[#f14e32]', classesExtras: '' },
     { nome: 'Inglês Avançado', icone: 'bi-translate', cor: 'text-[#FFD60A]', classesExtras: 'col-span-2 md:col-span-1' }
 ]);
 
@@ -152,7 +176,7 @@ const executeCommand = async () => {
     if (!rawInput && gameStatus.value !== 'password') return;
 
     if (gameStatus.value === 'password') {
-        terminalHistory.value.push({ type: 'input', text: `${terminalPrefix.value}` }); // Esconde a senha digitada
+        terminalHistory.value.push({ type: 'input', text: `${terminalPrefix.value}` });
     } else {
         terminalHistory.value.push({ type: 'input', text: `${terminalPrefix.value}${rawInput}` });
     }
@@ -160,7 +184,6 @@ const executeCommand = async () => {
     const args = rawInput.split(' ').filter(Boolean);
     const cmd = args[0] ? args[0].toLowerCase() : '';
 
-    // Lógica para sair do jogo
     if ((cmd === 'quit' || cmd === 'exit') && gameStatus.value !== 'inactive') {
         gameStatus.value = 'inactive';
         terminalPrefix.value = 'root@elliton:~$ ';
@@ -171,24 +194,21 @@ const executeCommand = async () => {
         return;
     }
 
-    // Seleção de Dificuldade
     if (gameStatus.value === 'select_diff') {
         if (cmd === 'facil' || cmd === 'fácil') {
             gameDifficulty.value = 'facil';
             gameStatus.value = 'playing';
             terminalPrefix.value = 'guest@ctf-server:~$ ';
-            terminalHistory.value.push({ type: 'output', text: '[!] MODO FÁCIL: Comandos de dicas ativados.\n\n[ Conectado a 192.168.1.104 ]\nBem-vindo ao servidor de homologação. Você está logado como "guest".\nObjetivo: Escalar privilégios para "root" usando falhas de configuração.\nDica inicial: Digite "hint" se não souber por onde começar.' });
+            terminalHistory.value.push({ type: 'output', text: '[!] MODO FÁCIL ativado.\n\n[ Conectado a 192.168.1.104 ]\nObjetivo: Escalar privilégios para "root".\nDigite "hint" se não souber por onde começar.' });
         } else if (cmd === 'dificil' || cmd === 'difícil') {
             gameDifficulty.value = 'dificil';
             gameStatus.value = 'playing';
             terminalPrefix.value = 'guest@ctf-server:~$ ';
-            terminalHistory.value.push({ type: 'output', text: '[!] MODO DIFÍCIL: Dicas desativadas. Você está por conta própria.\n\n[ Conectado a 192.168.1.104 ]\nBem-vindo ao servidor de homologação. Você está logado como "guest".\nObjetivo: Escalar privilégios para "root". Enumerar é a chave.' });
+            terminalHistory.value.push({ type: 'output', text: '[!] MODO DIFÍCIL ativado.\n\n[ Conectado a 192.168.1.104 ]\nObjetivo: Escalar privilégios para "root". Enumerar é a chave.' });
         } else {
             terminalHistory.value.push({ type: 'output', text: 'Dificuldade não reconhecida. Digite "facil" ou "dificil".' });
         }
     }
-    
-    // Inserção da Senha/Token
     else if (gameStatus.value === 'password') {
         if (rawInput === 'vaca_hacker_2026') {
             gameStatus.value = 'inactive';
@@ -197,12 +217,9 @@ const executeCommand = async () => {
                 type: 'output', text: `
  _________________________________________
 /         ACESSO ROOT VERIFICADO          \\
-|   Parabéns por quebrar a segurança!     |
 |                                         |
 |        🏆 DEV SEC OPS MASTER 🏆         |
-|                                         |
-|  Mande uma mensagem no LinkedIn dizendo |
-\\  que você encontrou a Vaca Hacker!      /
+\\                                         /
  -----------------------------------------
         \\   ^__^
          \\  (oo)\\_______
@@ -216,8 +233,6 @@ const executeCommand = async () => {
             terminalHistory.value.push({ type: 'output', text: 'sys-recovery: Token inválido ou expirado. Acesso negado.' });
         }
     }
-    
-    // Lógica do Jogo Rodando
     else if (gameStatus.value === 'playing') {
         if (cmd === 'ls') {
             if (args.includes('-a') || args.includes('-la') || args.includes('-al')) {
@@ -229,103 +244,82 @@ const executeCommand = async () => {
         else if (cmd === 'cat') {
             const file = args[1];
             if (file === 'notas.txt') {
-                terminalHistory.value.push({ type: 'output', text: 'LEMBRETE DA EQUIPE DEV:\n"Atenção: Não esquecer de limpar o histórico do terminal e apagar backups de variáveis de ambiente do diretório home após o deploy."' });
+                terminalHistory.value.push({ type: 'output', text: 'LEMBRETE DA EQUIPE DEV:\n"Atenção: Não esquecer de limpar o histórico e apagar backups."' });
             } else if (file === 'readme.md') {
-                terminalHistory.value.push({ type: 'output', text: '# Servidor de Homologação\nEm caso de perda de acesso administrativo, utilize o utilitário de recuperação do sistema.\nComando: sudo /sbin/sys-recovery\nNota: É necessário possuir o token de autorização atualizado.' });
+                terminalHistory.value.push({ type: 'output', text: '# Servidor de Homologação\nRecuperação do sistema: sudo /sbin/sys-recovery' });
             } else if (file === '.bash_history') {
-                terminalHistory.value.push({ type: 'output', text: 'cd /var/www/html\nnano .env\ncp .env /home/guest/.env.backup\nchmod 777 /home/guest/.env.backup\nsudo /sbin/sys-recovery\nexit' });
+                terminalHistory.value.push({ type: 'output', text: 'nano .env\ncp .env /home/guest/.env.backup\nchmod 777 /home/guest/.env.backup\nsudo /sbin/sys-recovery' });
             } else if (file === '.env.backup') {
-                terminalHistory.value.push({ type: 'output', text: 'APP_ENV=homolog\nAPP_KEY=base64:xpto987...\nDB_CONNECTION=postgres\nDB_PASS=admin123\nSYS_RECOVERY_TOKEN=vaca_hacker_2026' });
-            } else if (!file) {
-                terminalHistory.value.push({ type: 'output', text: 'cat: falta operando de arquivo' });
+                terminalHistory.value.push({ type: 'output', text: 'SYS_RECOVERY_TOKEN=vaca_hacker_2026' });
             } else {
-                terminalHistory.value.push({ type: 'output', text: `cat: ${file}: Arquivo ou diretório inexistente` });
+                terminalHistory.value.push({ type: 'output', text: `cat: ${file || 'falta operando'}: Arquivo inexistente` });
             }
         } 
         else if (cmd === 'sudo') {
             if (args[1] === '-l') {
-                terminalHistory.value.push({ type: 'output', text: 'Matching Defaults entries for guest on ctf-server:\n    env_reset, mail_badpass\n\nUser guest may run the following commands on ctf-server:\n    (root) NOPASSWD: /sbin/sys-recovery' });
+                terminalHistory.value.push({ type: 'output', text: 'User guest may run:\n    (root) NOPASSWD: /sbin/sys-recovery' });
             } else if (args[1] === '/sbin/sys-recovery' || args[1] === 'sys-recovery') {
                 gameStatus.value = 'password';
-                terminalPrefix.value = 'Insira o Token de Recuperação: ';
+                terminalPrefix.value = 'Insira o Token: ';
             } else {
-                terminalHistory.value.push({ type: 'output', text: `[sudo] password for guest:` });
                 terminalHistory.value.push({ type: 'output', text: `sudo: authentication failure` });
             }
         }
-        else if (cmd === 'su') {
-            terminalHistory.value.push({ type: 'output', text: 'su: Authentication failure' });
-        }
         else if (cmd === 'hint') {
             if (gameDifficulty.value === 'facil') {
-                terminalHistory.value.push({ type: 'output', text: '[DICA] 1. Liste todos os arquivos, inclusive os ocultos (ls -a).\n2. Leia todos os arquivos de texto para entender o contexto.\n3. O histórico do terminal (.bash_history) sempre entrega os passos de quem usou antes.\n4. Se descobrir um comando restrito, use "sudo <comando>".' });
+                terminalHistory.value.push({ type: 'output', text: '[DICA] O histórico do terminal (.bash_history) sempre entrega os passos de quem usou antes.' });
             } else {
-                terminalHistory.value.push({ type: 'output', text: 'bash: hint: comando não habilitado na dificuldade difícil.' });
+                terminalHistory.value.push({ type: 'output', text: 'bash: hint: desativado.' });
             }
-        } 
-        else if (cmd === 'pwd') {
-            terminalHistory.value.push({ type: 'output', text: '/home/guest' });
-        } 
-        else if (cmd === 'whoami') {
-            terminalHistory.value.push({ type: 'output', text: 'guest' });
         } 
         else if (cmd === 'clear') {
             terminalHistory.value = [];
         } 
         else {
-            terminalHistory.value.push({ type: 'output', text: `bash: ${cmd}: comando não encontrado no ambiente guest.` });
+            terminalHistory.value.push({ type: 'output', text: `bash: ${cmd}: comando não encontrado.` });
         }
     }
-    
-    // Lógica do Terminal Padrão (Fora do Jogo)
     else {
         switch (cmd) {
             case 'help':
                 terminalHistory.value.push({
                     type: 'output', text: `Comandos úteis:
-  about    - Resumo do meu perfil
-  skills   - Minhas principais tecnologias
-  contact  - Informações de contato e redes
-  cv       - Baixar meu currículo (PDF)
-  theme    - Alternar modo Dark/Light
-  play     - Iniciar minigame de Invasão (CTF Sandbox)
-  clear    - Limpar o terminal` });
+ about    - Resumo do meu perfil
+ skills   - Minhas principais tecnologias
+ contact  - Redes e contatos
+ cv       - Baixar meu currículo
+ theme    - Alternar modo Dark/Light
+ play     - Iniciar minigame CTF
+ clear    - Limpar o terminal` });
                 break;
             case 'about':
             case 'whoami':
-                terminalHistory.value.push({ type: 'output', text: 'Elliton Luís\nDesenvolvedor Full-Stack focado em ecossistema PHP (Laravel), Vue.js e infraestrutura (Linux/WSL).' });
+                terminalHistory.value.push({ type: 'output', text: 'Elliton Luís\nDesenvolvedor construindo soluções reais com PHP/Laravel, Vue.js e integrando IA no fluxo.' });
                 break;
             case 'skills':
-                terminalHistory.value.push({ type: 'output', text: '> Back-end: PHP 8+, Laravel\n> Front-end: Vue.js, Tailwind\n> Infra: Linux, WSL, Automações' });
+                terminalHistory.value.push({ type: 'output', text: '> Back-end: PHP 8, Laravel, Python, Go\n> Front-end: Vue.js, Tailwind\n> Infra & Sec: Linux (Manjaro/WSL), AppSec Base' });
                 break;
             case 'contact':
-                terminalHistory.value.push({ type: 'output', text: 'LinkedIn: /in/elliton-luis...\nGitHub: github.com/Elliton-Luis' });
+                terminalHistory.value.push({ type: 'output', text: 'GitHub: github.com/Elliton-Luis' });
                 break;
             case 'cv':
                 const link = document.createElement('a');
                 link.href = '/curriculo_elliton_luis.pdf';
                 link.download = 'Elliton_Luis_CV.pdf';
                 link.click();
-                terminalHistory.value.push({ type: 'output', text: '> Iniciando download do currículo...' });
+                terminalHistory.value.push({ type: 'output', text: '> Iniciando download...' });
                 break;
             case 'theme':
                 toggleTheme();
-                terminalHistory.value.push({ type: 'output', text: `> Tema alterado para ${isDark.value ? 'Dark' : 'Light'} Mode.` });
                 break;
             case 'play':
             case 'game':
                 gameStatus.value = 'select_diff';
                 terminalPrefix.value = 'CTF> ';
-                terminalHistory.value.push({ type: 'output', text: '>> INICIANDO PROTOCOLO DE CTF <<\nEscolha a dificuldade digitando "facil" (com dicas) ou "dificil" (sem dicas).' });
+                terminalHistory.value.push({ type: 'output', text: '>> INICIANDO PROTOCOLO DE CTF <<\nEscolha: "facil" ou "dificil".' });
                 break;
             case 'clear':
                 terminalHistory.value = [];
-                break;
-            case 'ls':
-                terminalHistory.value.push({ type: 'output', text: 'projetos/  habilidades/  contato.txt  cv.pdf' });
-                break;
-            case 'sudo':
-                terminalHistory.value.push({ type: 'output', text: 'elliton is not in the sudoers file. This incident will be reported.' });
                 break;
             default:
                 terminalHistory.value.push({ type: 'output', text: `bash: ${cmd}: comando não encontrado. Digite 'help'.` });
@@ -492,12 +486,7 @@ onMounted(() => {
                             <hr class="border-t-4 border-[#111111] dark:border-[#2a2a2a] w-16" />
 
                             <p class="text-lg font-medium leading-relaxed max-w-lg text-[#111111] dark:text-[#f3f3f3]">
-                                Focado na construção de aplicações reais e funcionais. Minha abordagem une a prática
-                                constante com o ecossistema <strong
-                                    class="font-bold text-[#111111] dark:text-[#ffffff]">PHP moderno</strong> à
-                                busca por autonomia em infraestrutura <strong
-                                    class="font-bold text-[#111111] dark:text-[#ffffff]">Linux</strong> e integração de
-                                <strong class="font-bold text-[#111111] dark:text-[#ffffff]">IA</strong>.
+                                Sempre buscando evoluir construindo ferramentas que resolvem problemas reais. Minha base é o ecossistema <strong class="font-bold text-[#111111] dark:text-[#ffffff]">PHP (Laravel) e Vue.js</strong>, com um interesse forte e prático em automações no <strong class="font-bold text-[#111111] dark:text-[#ffffff]">Linux</strong>, segurança e integração de <strong class="font-bold text-[#111111] dark:text-[#ffffff]">IA</strong>.
                             </p>
 
                             <div class="flex flex-col xl:flex-row gap-4 pt-2">
@@ -514,7 +503,7 @@ onMounted(() => {
 
                                 <a href="#projetos"
                                     class="px-8 py-3.5 bg-[#ffffff] dark:bg-[#111111] text-[#111111] dark:text-[#ffffff] font-mono font-bold border-2 border-[#111111] dark:border-[#2a2a2a] shadow-[4px_4px_0px_0px_#111111] dark:shadow-[4px_4px_0px_0px_#FFD60A] hover:bg-[#f3f3f3] dark:hover:bg-[#050505] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer">
-                                    <i class="bi bi-folder-fill text-lg"></i> {{ projetos.length + 4 }}+ Projetos
+                                    <i class="bi bi-folder-fill text-lg"></i> Projetos
                                 </a>
                             </div>
                         </div>
@@ -565,7 +554,7 @@ onMounted(() => {
                                         >_
                                     </span>
                                 </span>
-                                Habilidades
+                                Competências & Foco
                             </h2>
                             <hr class="border-t-2 border-[#111111] dark:border-[#2a2a2a] w-24" />
                         </div>
@@ -574,92 +563,41 @@ onMounted(() => {
                                 class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-8 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-2 transition-all duration-300 flex flex-col">
                                 <h3
                                     class="inline-block px-2 py-1 font-mono font-bold text-xl mb-4 bg-[#111111] text-[#ffffff] dark:bg-transparent dark:text-[#ffffff] transition-colors self-start">
-                                    <i class="bi bi-phone mr-2 text-[#FFD60A]"></i>Mobile-First
+                                    <i class="bi bi-gear mr-2 text-[#FFD60A]"></i>Prática & Automação
                                 </h3>
-                                <p class="text-sm leading-relaxed text-[#111111] dark:text-[#f3f3f3]">Desenvolvimento
-                                    orientado à responsividade, buscando garantir uma boa performance e experiência do
-                                    usuário (UX) em
-                                    diferentes dispositivos, priorizando a base mobile.</p>
+                                <p class="text-sm leading-relaxed text-[#111111] dark:text-[#f3f3f3]">Valorizo o desenvolvimento que sai da teoria. Gosto de criar ferramentas (CLI, bots) para automatizar fluxos repetitivos no terminal e melhorar o fluxo de trabalho.</p>
                             </div>
                             <div
                                 class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-8 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-2 transition-all duration-300 flex flex-col">
                                 <h3
                                     class="inline-block px-2 py-1 font-mono font-bold text-xl mb-4 bg-[#111111] text-[#ffffff] dark:bg-transparent dark:text-[#ffffff] transition-colors self-start">
-                                    <i class="bi bi-diagram-3 mr-2 text-[#FFD60A]"></i>Arquitetura de Sistemas
+                                    <i class="bi bi-diagram-3 mr-2 text-[#FFD60A]"></i>Arquitetura e Clean Code
                                 </h3>
-                                <p class="text-sm leading-relaxed text-[#111111] dark:text-[#f3f3f3]">Modelagem
-                                    cuidadosa
-                                    de regras de negócio, construção de APIs RESTful e organização de bancos de dados
-                                    visando aplicações mais escaláveis e de fácil manutenção.</p>
+                                <p class="text-sm leading-relaxed text-[#111111] dark:text-[#f3f3f3]">Mantenho uma busca constante por escrever códigos sustentáveis. Estudo modelagem de banco, organização de regras de negócio e consumo/criação de APIs RESTful estruturadas.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="space-y-8">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            
                             <div
                                 class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                                <h3
-                                    class="inline-block px-2 py-1 font-mono font-bold text-lg mb-4 bg-[#111111] text-[#ffffff] dark:bg-transparent dark:text-[#ffffff] transition-colors self-start">
-                                    <i class="bi bi-code-slash mr-2 text-[#FFD60A]"></i>Fundamentos & CS
-                                </h3>
-                                <div class="flex flex-wrap gap-2 mb-3">
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#e34c26] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">HTML5
-                                        / CSS3</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#f0db4f] text-[#111111] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">JS
-                                        (ES6+)</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#4a90e2] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Estruturas
-                                        de Dados</span>
-                                </div>
-                            </div>
-
-                            <div
-                                class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-1 transition-all duration-300 lg:row-span-2 flex flex-col">
                                 <h3
                                     class="inline-block px-2 py-1 font-mono font-bold text-lg mb-4 bg-[#111111] text-[#ffffff] dark:bg-transparent dark:text-[#ffffff] transition-colors self-start">
                                     <i class="bi bi-server mr-2 text-[#FFD60A]"></i>Back-end
                                 </h3>
-                                <div class="space-y-4">
-                                    <div class="flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 border-2 border-[#111111] bg-[#777bb4] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">PHP
-                                            8+</span>
-                                        <span
-                                            class="px-3 py-1 border-2 border-[#111111] bg-[#ff2d20] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Laravel</span>
-                                    </div>
-                                    <ul class="text-sm text-[#111111] dark:text-[#f3f3f3] space-y-3 font-mono">
-                                        <li>› <strong
-                                                class="bg-[#27c93f] text-[#111111] px-1.5 py-0.5 border border-[#111111] shadow-[2px_2px_0px_0px_#111111] mr-1">Eloquent
-                                                ORM</strong> Queries eficientes</li>
-                                        <li>› <strong
-                                                class="bg-[#ff5f56] text-[#ffffff] px-1.5 py-0.5 border border-[#111111] shadow-[2px_2px_0px_0px_#111111] mr-1">Arquitetura</strong>
-                                            MVC, SOLID, Clean Code</li>
-                                        <li>› Componentes: Migrations, Providers</li>
-                                        <li>› APIs RESTful robustas</li>
-                                    </ul>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#777bb4] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">PHP 8+</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#ff2d20] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Laravel</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#3776ab] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Python</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#00add8] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Go</span>
                                 </div>
-                            </div>
-
-                            <div
-                                class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                                <h3
-                                    class="inline-block px-2 py-1 font-mono font-bold text-lg mb-4 bg-[#111111] text-[#ffffff] dark:bg-transparent dark:text-[#ffffff] transition-colors self-start">
-                                    <i class="bi bi-robot mr-2 text-[#FFD60A]"></i>IA & Produtividade
-                                </h3>
-                                <div class="flex flex-wrap gap-2">
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#9333ea] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">RAG</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#9333ea] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Embeddings</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#9333ea] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Chunking</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#db2777] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Agentes
-                                        de IA</span>
-                                </div>
+                                <ul class="text-sm text-[#111111] dark:text-[#f3f3f3] space-y-3 font-mono mt-auto">
+                                    <li>› <strong class="bg-[#27c93f] text-[#111111] px-1.5 py-0.5 border border-[#111111] shadow-[2px_2px_0px_0px_#111111] mr-1">APIs</strong> Construção e consumo</li>
+                                    <li>› <strong class="bg-[#ff5f56] text-[#ffffff] px-1.5 py-0.5 border border-[#111111] shadow-[2px_2px_0px_0px_#111111] mr-1">Arquitetura</strong> MVC na prática</li>
+                                    <li>› Eloquent ORM e migrations</li>
+                                </ul>
                             </div>
 
                             <div
@@ -669,31 +607,44 @@ onMounted(() => {
                                     <i class="bi bi-window-sidebar mr-2 text-[#FFD60A]"></i>Front-end
                                 </h3>
                                 <div class="flex flex-wrap gap-2">
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#42b883] text-[#111111] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Vue.js</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#8bc0d0] text-[#111111] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Alpine.js</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#38b2ac] text-[#111111] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Tailwind
-                                        CSS</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#6366f1] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Bootstrap</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#42b883] text-[#111111] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Vue.js</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#38b2ac] text-[#111111] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Tailwind CSS</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#32B0E4] text-[#111111] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Livewire</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#8bc0d0] text-[#111111] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Alpine.js</span>
                                 </div>
+                                <ul class="text-sm text-[#111111] dark:text-[#f3f3f3] space-y-3 font-mono mt-4">
+                                    <li>› Mobile-first e responsividade</li>
+                                    <li>› Componentização de UI</li>
+                                </ul>
                             </div>
 
                             <div
                                 class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-1 transition-all duration-300 flex flex-col">
                                 <h3
                                     class="inline-block px-2 py-1 font-mono font-bold text-lg mb-4 bg-[#111111] text-[#ffffff] dark:bg-transparent dark:text-[#ffffff] transition-colors self-start">
-                                    <i class="bi bi-pc-display mr-2 text-[#FFD60A]"></i>Sistemas & DevOps
+                                    <i class="bi bi-pc-display mr-2 text-[#FFD60A]"></i>Infraestrutura & Sec
                                 </h3>
                                 <div class="flex flex-wrap gap-2">
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#111111] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#FFD60A] dark:shadow-[2px_2px_0px_0px_#ffffff]">Linux</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#0078d7] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">WSL</span>
-                                    <span
-                                        class="px-3 py-1 border-2 border-[#111111] bg-[#0ea5e9] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Virtualização</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#111111] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#FFD60A] dark:shadow-[2px_2px_0px_0px_#ffffff]">Manjaro / WSL</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#0ea5e9] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">AppSec Basics</span>
+                                </div>
+                                <ul class="text-sm text-[#111111] dark:text-[#f3f3f3] space-y-3 font-mono mt-4">
+                                    <li>› Autonomia de ambiente local</li>
+                                    <li>› Fundamentos de web security</li>
+                                </ul>
+                            </div>
+
+                            <div
+                                class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-1 transition-all duration-300 flex flex-col md:col-span-2 lg:col-span-3">
+                                <h3
+                                    class="inline-block px-2 py-1 font-mono font-bold text-lg mb-4 bg-[#111111] text-[#ffffff] dark:bg-transparent dark:text-[#ffffff] transition-colors self-start">
+                                    <i class="bi bi-robot mr-2 text-[#FFD60A]"></i>Estudos em Inteligência Artificial
+                                </h3>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#9333ea] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">RAG</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#9333ea] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Embeddings & Chunking</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#db2777] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Agentes Autônomos</span>
+                                    <span class="px-3 py-1 border-2 border-[#111111] bg-[#e34c26] text-[#ffffff] text-xs font-mono font-bold shadow-[2px_2px_0px_0px_#111111]">Prompt Engineering</span>
                                 </div>
                             </div>
                         </div>
@@ -729,11 +680,9 @@ onMounted(() => {
                                     class="font-mono text-xs font-bold text-[#111111] bg-[#f3f3f3] border-2 border-[#111111] px-2 py-1 shadow-[2px_2px_0px_0px_#111111]">commit
                                     v1.4</span>
                                 <h3 class="font-mono font-bold text-xl mt-3 text-[#111111] dark:text-[#ffffff]">feat:
-                                    Foco em Ferramentas e IA</h3>
+                                    Integrações de IA e Automações</h3>
                                 <p class="text-sm mt-2 text-[#111111] dark:text-[#f3f3f3] leading-relaxed max-w-2xl">
-                                    Desenvolvimento de ferramentas como o AIC e o Draftly. Em paralelo, aprendizado em
-                                    curso de técnicas para melhor utilização e integração de ferramentas de IA no fluxo
-                                    de desenvolvimento.
+                                    Desenvolvimento ativo de soluções para integrar IA em projetos do dia a dia (RAG, Agentes), explorando CLI com Go e automações baseadas no terminal para otimizar fluxos e processos de código.
                                 </p>
                             </div>
 
@@ -747,8 +696,7 @@ onMounted(() => {
                                 <h3 class="font-mono font-bold text-xl mt-3 text-[#111111] dark:text-[#ffffff]">merge
                                     branch 'front-end' into main</h3>
                                 <p class="text-sm mt-2 text-[#111111] dark:text-[#f3f3f3] leading-relaxed max-w-2xl">
-                                    Integrando o ecossistema Vue.js aos projetos, construindo interfaces reativas e
-                                    modernas, complementando a base sólida do backend.
+                                    Utilização contínua do ecossistema Vue.js (incluindo Alpine.js para dinamismo rápido) junto ao Tailwind, complementando a lógica sólida do backend para entregar soluções modernas.
                                 </p>
                             </div>
 
@@ -762,23 +710,7 @@ onMounted(() => {
                                 <h3 class="font-mono font-bold text-xl mt-3 text-[#111111] dark:text-[#ffffff]">feat:
                                     Ecossistema PHP & Laravel</h3>
                                 <p class="text-sm mt-2 text-[#111111] dark:text-[#f3f3f3] leading-relaxed max-w-2xl">
-                                    Construção e estruturação de aplicações web. Experiência prática na criação de APIs,
-                                    padrão MVC, Eloquent ORM e implementação de regras de negócio.
-                                </p>
-                            </div>
-
-                            <div class="relative pl-8 group">
-                                <div
-                                    class="absolute -left-[14px] top-1 w-6 h-6 bg-[#3776ab] border-4 border-[#111111] dark:border-[#f3f3f3] rounded-full group-hover:scale-125 transition-transform">
-                                </div>
-                                <span
-                                    class="font-mono text-xs font-bold text-[#111111] bg-[#f3f3f3] border-2 border-[#111111] px-2 py-1 shadow-[2px_2px_0px_0px_#111111]">commit
-                                    v1.1</span>
-                                <h3 class="font-mono font-bold text-xl mt-3 text-[#111111] dark:text-[#ffffff]">feat:
-                                    Lógica com Python</h3>
-                                <p class="text-sm mt-2 text-[#111111] dark:text-[#f3f3f3] leading-relaxed max-w-2xl">
-                                    Estudo de Python como evolução da lógica de programação. Foco na resolução de
-                                    problemas.
+                                    Criação de projetos práticos lidando com rotas, manipulação de dados via Eloquent ORM, e modelagem de arquitetura usando o padrão MVC em sistemas reais (gestão, finanças e controle).
                                 </p>
                             </div>
 
@@ -790,13 +722,11 @@ onMounted(() => {
                                     class="font-mono text-xs font-bold text-[#111111] bg-[#f3f3f3] border-2 border-[#111111] px-2 py-1 shadow-[2px_2px_0px_0px_#111111]">commit
                                     v1.0</span>
                                 <h3 class="font-mono font-bold text-xl mt-3 text-[#111111] dark:text-[#ffffff]">init:
-                                    Introdução ao Desenvolvimento Web</h3>
+                                    Fundamentos do Desenvolvimento Web</h3>
                                 <p class="text-sm mt-2 text-[#111111] dark:text-[#f3f3f3] leading-relaxed max-w-2xl">
-                                    Início da jornada na programação com foco nos fundamentos da web, estruturação de
-                                    páginas e lógica de programação básica.
+                                    Início da jornada fortalecendo a lógica de programação, compreensão do terminal Linux e fundamentos base da web para resolver problemas passo a passo.
                                 </p>
                             </div>
-
                         </div>
                     </div>
                 </section>
@@ -891,7 +821,7 @@ onMounted(() => {
 
                         <div class="relative group">
                             <div
-                                class="absolute inset-0 bg-[#FFD60A] border-2 border-[#111111] dark:border-[#2a2a2a] translate-x-2 translate-y-2 transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3">
+                                class="absolute inset-0 dark:border-[#2a2a2a] translate-x-2 translate-y-2 transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3">
                             </div>
                             <div
                                 class="relative border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#111111] text-[#ffffff] p-8 md:p-12 shadow-none">
@@ -901,61 +831,55 @@ onMounted(() => {
                                     </div>
                                     <div class="space-y-6 flex-grow">
                                         <h2 class="font-mono text-2xl md:text-3xl font-bold flex items-center mb-4">
-                                            <span class="text-[#FFD60A] mr-3 animate-pulse">_</span> Objetivos
+                                            <span class="text-[#FFD60A] mr-3 animate-pulse">_</span> Mentalidade
                                         </h2>
 
                                         <p
                                             class="text-base md:text-lg leading-relaxed font-sans font-light text-[#f3f3f3]">
-                                            Direcionado a construir soluções tecnológicas úteis e escaláveis, <span
-                                                class="bg-[#FFD60A] text-[#111111] px-2 py-0.5 font-bold font-mono text-base shadow-[2px_2px_0px_0px_#ffffff]">minha
-                                                meta contínua</span>
-                                            é evoluir na arquitetura de sistemas, aprimorando ativamente meus
-                                            conhecimentos em <strong
-                                                class="text-[#ffffff] border-b-2 border-[#FFD60A] pb-0.5">Engenharia de
-                                                Software</strong>,
-                                            <strong class="text-[#ffffff] border-b-2 border-[#FFD60A] pb-0.5">IA
-                                                Aplicada</strong> e <strong
-                                                class="text-[#ffffff] border-b-2 border-[#FFD60A] pb-0.5">Web
-                                                Segurança</strong>.
+                                            Construo a base do meu conhecimento buscando resolver problemas visíveis e palpáveis. Sou um desenvolvedor prático, e <span
+                                                class="bg-[#FFD60A] text-[#111111] px-2 py-0.5 font-bold font-mono text-base shadow-[2px_2px_0px_0px_#ffffff]">meu objetivo</span>
+                                            é entregar soluções funcionais e limpas. Meu foco hoje não é ter apenas a teoria, mas aplicar ativamente o <strong
+                                                class="text-[#ffffff] border-b-2 border-[#FFD60A] pb-0.5">Pensamento Crítico</strong>, <strong
+                                                class="text-[#ffffff] border-b-2 border-[#FFD60A] pb-0.5">Arquitetura Desacoplada</strong> e criar fluxos de automação na linha de comando que agilizam meu processo de desenvolvimento.
                                         </p>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div
+                                class="mt-8 border-2 border-[#ffffff] dark:border-[#2a2a2a] flex flex-col h-[400px] min-h-[250px] max-h-[75vh] resize-y overflow-hidden shadow-[4px_4px_0px_0px_#ffffff] dark:shadow-[4px_4px_0px_0px_#FFD60A]">
                                 <div
-                                    class="mt-8 border-2 border-[#ffffff] dark:border-[#2a2a2a] flex flex-col h-[400px] min-h-[250px] max-h-[75vh] resize-y overflow-hidden shadow-[4px_4px_0px_0px_#ffffff] dark:shadow-[4px_4px_0px_0px_#FFD60A]">
-                                    <div
-                                        class="bg-[#e2e2e2] dark:bg-[#2a2a2a] border-b-2 border-[#111111] px-4 py-2 flex items-center gap-2 flex-shrink-0">
-                                        <div class="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#111111]"></div>
-                                        <div class="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#111111]"></div>
-                                        <div class="w-3 h-3 rounded-full bg-[#27c93f] border border-[#111111]"></div>
-                                        <span
-                                            class="ml-4 font-mono text-xs font-bold text-[#111111] dark:text-[#ffffff]">elliton@wsl:
-                                            ~</span>
-                                    </div>
-                                    <div class="bg-[#111111] p-4 md:p-6 flex-grow overflow-y-auto font-mono text-sm md:text-base cursor-text"
-                                        @click="focusTerminal" ref="terminalContentRef">
-                                        <div v-for="(line, index) in terminalHistory" :key="index" class="mb-2">
-                                            <div v-if="line.type === 'input'" class="text-[#f3f3f3]">
-                                                <template v-if="line.text.includes('Password:')">
-                                                    {{ line.text.split('Password:')[0] }}Password: <span
-                                                        class="tracking-[0.3em]">********</span>
-                                                </template>
-                                                <template v-else>
-                                                    {{ line.text }}
-                                                </template>
-                                            </div>
-                                            <div v-else class="text-[#FFD60A] whitespace-pre-wrap">
+                                    class="bg-[#e2e2e2] dark:bg-[#2a2a2a] border-b-2 border-[#111111] px-4 py-2 flex items-center gap-2 flex-shrink-0">
+                                    <div class="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#111111]"></div>
+                                    <div class="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#111111]"></div>
+                                    <div class="w-3 h-3 rounded-full bg-[#27c93f] border border-[#111111]"></div>
+                                    <span
+                                        class="ml-4 font-mono text-xs font-bold text-[#111111] dark:text-[#ffffff]">elliton@wsl:
+                                        ~</span>
+                                </div>
+                                <div class="bg-[#111111] p-4 md:p-6 flex-grow overflow-y-auto font-mono text-sm md:text-base cursor-text"
+                                    @click="focusTerminal" ref="terminalContentRef">
+                                    <div v-for="(line, index) in terminalHistory" :key="index" class="mb-2">
+                                        <div v-if="line.type === 'input'" class="text-[#f3f3f3]">
+                                            <template v-if="line.text.includes('Password:')">
+                                                {{ line.text.split('Password:')[0] }}Password: <span
+                                                    class="tracking-[0.3em]">********</span>
+                                            </template>
+                                            <template v-else>
                                                 {{ line.text }}
-                                            </div>
+                                            </template>
                                         </div>
-                                        <div class="flex items-center text-[#f3f3f3] mt-2">
-                                            <span class="mr-2 whitespace-pre">{{ terminalPrefix }}</span>
-                                            <input :type="gameStatus === 'password' ? 'password' : 'text'"
-                                                v-model="terminalInput" @keyup.enter="executeCommand"
-                                                ref="terminalInputRef"
-                                                class="bg-transparent border-none outline-none flex-grow text-[#f3f3f3] caret-[#FFD60A]"
-                                                autocomplete="off" spellcheck="false" />
+                                        <div v-else class="text-[#FFD60A] whitespace-pre-wrap">
+                                            {{ line.text }}
                                         </div>
+                                    </div>
+                                    <div class="flex items-center text-[#f3f3f3] mt-2">
+                                        <span class="mr-2 whitespace-pre">{{ terminalPrefix }}</span>
+                                        <input :type="gameStatus === 'password' ? 'password' : 'text'"
+                                            v-model="terminalInput" @keyup.enter="executeCommand"
+                                            ref="terminalInputRef"
+                                            class="bg-transparent border-none outline-none flex-grow text-[#f3f3f3] caret-[#FFD60A]"
+                                            autocomplete="off" spellcheck="false" />
                                     </div>
                                 </div>
                             </div>
@@ -1016,8 +940,7 @@ onMounted(() => {
                 <div class="container mx-auto px-6">
                     <p class="font-mono text-sm font-bold text-[#111111] dark:text-[#f3f3f3]">
                         Desenvolvido com <span class="text-[#42b883]">Vue.js</span> & TailwindCSS por Elliton Luís © {{
-                            new
-                                Date().getFullYear() }}.
+                            new Date().getFullYear() }}.
                     </p>
                     <p class="font-mono text-xs text-gray-500 dark:text-gray-400 mt-2">
                         System Status: <span class="text-green-500">All Systems Operational</span>
