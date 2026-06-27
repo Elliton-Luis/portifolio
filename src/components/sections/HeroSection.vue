@@ -5,7 +5,7 @@ const heroButtons = ref([
     {
         label: 'Baixar_CV.pdf',
         icon: 'bi-file-earmark-arrow-down-fill',
-        url: '/curriculo_elliton_luis.pdf',
+        url: '/curriculo.pdf',
         download: true,
         external: false
     },
