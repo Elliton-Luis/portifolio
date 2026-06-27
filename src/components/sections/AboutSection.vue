@@ -61,7 +61,7 @@ const redesSociais = [
     { 
         nome: 'WhatsApp', 
         icon: 'bi-whatsapp', 
-        url: 'https://wa.me/7599995', 
+        url: 'https://wa.me/7599988795', 
         color: 'text-[#25D366]', 
         hoverBg: 'hover:bg-[#25D366]', 
         hoverText: 'group-hover:text-white' 

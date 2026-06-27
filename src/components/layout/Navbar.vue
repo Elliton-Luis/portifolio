@@ -17,7 +17,7 @@ const navItems = [
 const contatos = [
     { icon: 'bi-github', url: 'https://github.com/Elliton-Luis', hover: 'hover:bg-[#111111] hover:text-white' },
     { icon: 'bi-linkedin', url: 'https://www.linkedin.com/in/elliton-luis-correia-da-silva-junior-9779452b3', hover: 'hover:bg-[#0A66C2] hover:text-white' },
-    { icon: 'bi-whatsapp', url: 'https://wa.me/7599995', hover: 'hover:bg-[#25D366] hover:text-white' }
+    { icon: 'bi-whatsapp', url: 'https://wa.me/75999488795', hover: 'hover:bg-[#25D366] hover:text-white' }
 ];
 
 const toggleMenu = () => {
