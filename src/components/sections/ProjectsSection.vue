@@ -7,6 +7,7 @@ const projetos = ref([
         nome: 'Logos',
         descricao: 'Editor de código focado em performance, desenvolvido em Go. Utiliza agentes de IA para modificar arquivos via linguagem natural.',
         imagens: ['logos/logos2.png', 'logos/logos.png','logos/logos3.png'],
+        titulos: ['Comando inicial e raciocinio da IA', 'Finalizaçao do Processo e dados da operação', 'Resultado do Prompt'],
         techs: ['Go', 'IA', 'CLI'],
         github: 'https://github.com/Elliton-Luis/logos'
     },
@@ -14,13 +15,15 @@ const projetos = ref([
         nome: 'Synapse',
         descricao: 'Ferramenta que automatiza e padroniza a geração de mensagens de commit utilizando inteligência artificial, garantindo um histórico limpo.',
         imagens: ['synapse/synapse1.png'],
+        titulos: ['Geração Automática de Commit'],
         techs: ['Go', 'IA', 'CLI'],
         github: 'https://github.com/Elliton-Luis/synapse'
     },
     {
         nome: 'AquinozBot',
         descricao: 'Assistente educacional no Telegram voltado para acessibilidade. Processa PDFs e links, convertendo-os em resumos e áudios com um custo baixissimo de tokens e de internet.',
-        imagens: ['aquinozBot/aquinozBot.jpeg', 'aquinozBot/aquinozBot2.jpeg'],
+        imagens: ['aquinozBot/aquinozBot.jpeg','aquinozBot/aquinozBot3.png','aquinozBot/aquinozBot2.jpeg'],
+        titulos: ['Resumo em Áudios','Obtendo conteúdos por meio de PDFs e Links','Uso de áudios para realizar perguntas'],
         techs: ['Python', 'Telegram API', 'IA'],
         github: 'https://github.com/ArthurThuko/Aquinoz_Bot',
         status: 'manutencao'
@@ -29,13 +32,15 @@ const projetos = ref([
         nome: 'FinTrack',
         descricao: 'Ferramenta de gestão financeira com verificações de saldo, histórico de transações e estatísticas em tempo real.',
         imagens: ['fintrack/fintrack.png', 'fintrack/fintrack2.png', 'fintrack/fintrack3.png','fintrack/fintrack4.png'],
+        titulos: ['Dashboard', 'Histórico', 'Dashboard Mobile', 'Histórico Mobile'],
         techs: ['Vue.js', 'Laravel', 'Postgres', 'Tailwind'],
         github: 'https://github.com/Elliton-Luis/fintrack'
     },
     {
         nome: 'NeuroZen',
         descricao: 'Auxilia profissionais da saúde mental a acompanhar pacientes com hábitos gamificados, badges e avatares.',
-        imagens: ['neuroZen/neuroZen.jpeg','neuroZen/neurozen.jpeg','neuroZen/neurozen1.jpeg','neuroZen/neurozen2.jpeg','neuroZen/neurozen3.jpeg'],
+        imagens: ['neuroZen/neuroZen1.png','neuroZen/neuroZen2.png','neuroZen/neurozen1.jpeg','neuroZen/neurozen3.jpeg','neuroZen/neuroZen4.png','neuroZen/neuroZen5.png'],
+        titulos: ['Tela para a seleção da condição que mais condiz com seu estado atual','Tela de Hábitos', 'Artigos', 'Avatares', 'Badges'],
         techs: ['Laravel', 'Livewire', 'Blade', 'Alpine.js', 'Tailwind'],
         github: '',
         status: 'privado' 
@@ -44,6 +49,7 @@ const projetos = ref([
         nome: 'AlphaLanches',
         descricao: 'Gestão de lanchonetes com agendamento, controle de pais, gestão de saldo, PDV e análise financeira detalhada.',
         imagens: ['alphaLanches/alphaLanches.jpeg', 'alphaLanches/alphaLanches1.jpeg','alphaLanches/alphaLanches2.jpeg','alphaLanches/alphaLanches3.jpeg','alphaLanches/alphaLanches4.jpeg','alphaLanches/alphaLanches5.jpeg','alphaLanches/alphaLanches6.jpeg'],
+        titulos: ['Dashboard Principal', 'PDV', 'Gestão de Saldo', 'Controle de Pais', 'Relatórios', 'Agendamentos', 'Configurações'],
         techs: ['Laravel', 'Livewire', 'Blade', 'Bootstrap'],
         github: '', 
         status: 'privado' 
@@ -52,6 +58,7 @@ const projetos = ref([
         nome: 'Horizo',
         descricao: 'Dose matinal de informação: aplicação que compila e exibe os dados mais relevantes do cenário nacional.',
         imagens: ['horizo/horizo.jpeg'],
+        titulos: ['Resumo de Notícias'],
         techs: ['Laravel', 'Blade', 'Tailwind'],
         github: 'https://github.com/Elliton-Luis/horizo'
     },
@@ -59,6 +66,7 @@ const projetos = ref([
         nome: 'AlphaControl',
         descricao: 'Sistema desktop projetado para automação de processos locais e controle sistêmico focado em hardware.',
         imagens: ['alphaControl/alphaControl.png'],
+        titulos: ['Painel de Controle'],
         techs: ['Java', 'Swing'],
         github: 'https://github.com/ArthurThuko/AlphaControl'
     },
@@ -66,6 +74,7 @@ const projetos = ref([
         nome: 'Vitória Vidros',
         descricao: 'Sistema integrado de gestão, acompanhamento de ordens de serviço e geração de orçamentos para vidraçaria.',
         imagens: ['vitoriaVidros/vitoriaVidros.jpeg', 'vitoriaVidros/vitoriaVidros_os.jpeg'],
+        titulos: ['Dashboard', 'Ordens de Serviço'],
         techs: ['Laravel', 'Livewire', 'Blade', 'Tailwind', 'Alpine.js'],
         github: '',
         status: 'privado' 
@@ -109,7 +118,6 @@ const getTechClass = (tech) => {
     return classes[tech] || 'bg-gray-700 text-white';
 };
 
-// 1. CAPTURA SEGURA: Filtra estritamente por extensões válidas para ignorar arquivos fantasmas do Windows (Zone.Identifier)
 const imagensGlobais = import.meta.glob('../../assets/images/**/*.{png,jpg,jpeg,svg,webp,PNG,JPG,JPEG}', { eager: true });
 
 const getImagemUrl = (caminhoArquivo) => {
@@ -117,7 +125,6 @@ const getImagemUrl = (caminhoArquivo) => {
     
     const caminhoCompleto = `../../assets/images/${caminhoArquivo}`;
     
-    // 2. BLINDAGEM CONTRA CRASH: Se o arquivo não existir fisicamente na pasta, evita que o código quebre
     if (imagensGlobais[caminhoCompleto]) {
         return imagensGlobais[caminhoCompleto].default || imagensGlobais[caminhoCompleto];
     }
@@ -129,16 +136,33 @@ const getImagemUrl = (caminhoArquivo) => {
 const isModalOpen = ref(false);
 const currentExpandedImages = ref([]);
 const currentExpandedImageAlt = ref('');
+const currentExpandedImageTitles = ref([]); // NOVO: Ref para os títulos do modal
 
-const openModal = (imagensArray, altText) => {
+const openModal = (imagensArray, altText, titulosArray) => {
     if (!imagensArray || imagensArray.length === 0) return;
     
-    // Resolve as URLs salvando apenas caminhos mapeados com sucesso
-    const urlsResolvidas = imagensArray.map(img => getImagemUrl(img)).filter(url => url !== '');
+    const urlsResolvidas = [];
+    const titulosResolvidos = [];
+    
+    // Resolve as URLs mantendo a mesma ordem entre imagem e título
+    imagensArray.forEach((img, index) => {
+        const url = getImagemUrl(img);
+        if (url !== '') {
+            urlsResolvidas.push(url);
+            
+            // Pega o título correspondente, ou cria um título padrão (fallback) caso o array de títulos não tenha sido preenchido completamente
+            const titulo = (titulosArray && titulosArray[index]) 
+                ? titulosArray[index] 
+                : `Imagem ${index + 1}`;
+                
+            titulosResolvidos.push(titulo);
+        }
+    });
     
     if (urlsResolvidas.length === 0) return;
     
     currentExpandedImages.value = urlsResolvidas;
+    currentExpandedImageTitles.value = titulosResolvidos; // Preenche os títulos no modal
     currentExpandedImageAlt.value = altText;
     
     isModalOpen.value = true;
@@ -148,6 +172,7 @@ const openModal = (imagensArray, altText) => {
 const closeModal = () => {
     isModalOpen.value = false;
     currentExpandedImages.value = [];
+    currentExpandedImageTitles.value = []; // Limpa os títulos
     document.body.style.overflow = '';
 };
 </script>
@@ -169,7 +194,7 @@ const closeModal = () => {
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div v-for="(projeto, index) in projetos" :key="index" class="group border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 md:p-8 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-2 transition-all duration-300 flex flex-col h-full">
 
-                    <div class="relative w-full h-48 md:h-56 bg-[#f3f3f3] dark:bg-[#2a2a2a] mb-6 border-2 border-[#111111] flex items-center justify-center overflow-hidden cursor-pointer group/img" @click="openModal(projeto.imagens, projeto.nome)">
+                    <div class="relative w-full h-48 md:h-56 bg-[#f3f3f3] dark:bg-[#2a2a2a] mb-6 border-2 border-[#111111] flex items-center justify-center overflow-hidden cursor-pointer group/img" @click="openModal(projeto.imagens, projeto.nome, projeto.titulos)">
                         <img v-if="projeto.imagens && projeto.imagens.length > 0 && getImagemUrl(projeto.imagens[0])" 
                              :src="getImagemUrl(projeto.imagens[0])" 
                              :alt="projeto.nome" 
@@ -229,6 +254,11 @@ const closeModal = () => {
             </div>
         </div>
 
-        <ImageModal v-if="isModalOpen" :images="currentExpandedImages" :altText="currentExpandedImageAlt" @close="closeModal" />
+        <ImageModal 
+            v-if="isModalOpen" 
+            :images="currentExpandedImages" 
+            :titles="currentExpandedImageTitles" :altText="currentExpandedImageAlt" 
+            @close="closeModal" 
+        />
     </section>
 </template>

@@ -59,7 +59,7 @@ const techTags = {
                     class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-8 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-2 transition-all duration-300 flex flex-col">
                     
                     <div class="flex items-center mb-6 min-h-[40px]">
-                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-lg md:text-xl border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#ffffff] self-start transition-colors">
+                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-lg md:text-xl border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#FFD60A] self-start transition-colors">
                             <i :class="['bi', card.icone, 'mr-2 text-[#111111] dark:text-[#FFD60A]']"></i>
                             {{ card.titulo }}
                         </h3>
@@ -76,7 +76,7 @@ const techTags = {
                 <!-- Back-end -->
                 <div class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div class="flex items-center mb-5 min-h-[36px]">
-                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-sm md:text-base border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#ffffff] self-start transition-colors">
+                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-sm md:text-base border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#FFD60A] self-start transition-colors">
                             <i class="bi bi-server mr-2 text-[#111111] dark:text-[#FFD60A]"></i>Back-end
                         </h3>
                     </div>
@@ -97,7 +97,7 @@ const techTags = {
                 <!-- Front-end -->
                 <div class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div class="flex items-center mb-5 min-h-[36px]">
-                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-sm md:text-base border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#ffffff] self-start transition-colors">
+                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-sm md:text-base border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#FFD60A] self-start transition-colors">
                             <i class="bi bi-window-sidebar mr-2 text-[#111111] dark:text-[#FFD60A]"></i>Front-end
                         </h3>
                     </div>
@@ -117,7 +117,7 @@ const techTags = {
                 <!-- Infraestrutura & Sec -->
                 <div class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-1 transition-all duration-300 flex flex-col">
                     <div class="flex items-center mb-5 min-h-[36px]">
-                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-sm md:text-base border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#ffffff] self-start transition-colors">
+                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-sm md:text-base border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#FFD60A] self-start transition-colors">
                             <i class="bi bi-pc-display mr-2 text-[#111111] dark:text-[#FFD60A]"></i>Infraestrutura & Sec
                         </h3>
                     </div>
@@ -137,7 +137,7 @@ const techTags = {
                 <!-- Inteligência Artificial -->
                 <div class="border-2 border-[#111111] dark:border-[#2a2a2a] bg-[#ffffff] dark:bg-[#111111] p-6 shadow-[6px_6px_0px_0px_#111111] dark:shadow-[6px_6px_0px_0px_#FFD60A] hover:-translate-y-1 transition-all duration-300 flex flex-col md:col-span-2 lg:col-span-3">
                     <div class="flex items-center mb-5 min-h-[36px]">
-                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-sm md:text-base border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#ffffff] self-start transition-colors">
+                        <h3 class="relative inline-flex items-center px-3 py-1 font-mono font-bold text-sm md:text-base border-2 border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] dark:bg-[#111111] text-[#111111] dark:text-[#FFD60A] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#FFD60A] self-start transition-colors">
                             <i class="bi bi-robot mr-2 text-[#111111] dark:text-[#FFD60A]"></i>Estudos em Inteligência Artificial
                         </h3>
                     </div>

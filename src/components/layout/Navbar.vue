@@ -56,7 +56,7 @@ onMounted(() => {
                         <a :href="item.id" :class="[
                             'group flex items-center px-4 py-2 border-2 transition-all duration-200',
                             activeSection === item.id.substring(1)
-                                ? 'border-[#111111] dark:border-[#FFD60A] bg-[#FFD60A] text-[#111111] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#FFD60A]'
+                                ? 'border-[#111111] dark:border-[#FFD60A] bg-[#111111] text-[#ffffff] shadow-[3px_3px_0px_0px_#111111] dark:shadow-[3px_3px_0px_0px_#FFD60A]'
                                 : 'border-transparent text-[#111111] dark:text-[#f3f3f3] hover:border-[#111111] dark:hover:border-[#FFD60A] hover:bg-[#FFD60A] hover:text-[#111111] hover:shadow-[3px_3px_0px_0px_#111111] dark:hover:shadow-[3px_3px_0px_0px_#FFD60A]'
                         ]">
                             <span class="mr-2 font-mono opacity-100">$</span>
