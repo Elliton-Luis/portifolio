@@ -4,46 +4,12 @@ import ImageModal from '../ui/ImageModal.vue';
 
 const projetos = ref([
     {
-        nome: 'Logos',
-        descricao: 'Editor de código focado em performance, desenvolvido em Go. Utiliza agentes de IA para modificar arquivos via linguagem natural.',
-        imagens: ['logos/logos2.png', 'logos/logos.png','logos/logos3.png'],
-        titulos: ['Comando inicial e raciocinio da IA', 'Finalizaçao do Processo e dados da operação', 'Resultado do Prompt'],
-        techs: ['Go', 'IA', 'CLI'],
-        github: 'https://github.com/Elliton-Luis/logos'
-    },
-    {
         nome: 'Synapse',
         descricao: 'Ferramenta que automatiza e padroniza a geração de mensagens de commit utilizando inteligência artificial, garantindo um histórico limpo.',
         imagens: ['synapse/synapse1.png'],
         titulos: ['Geração Automática de Commit'],
         techs: ['Go', 'IA', 'CLI'],
         github: 'https://github.com/Elliton-Luis/synapse'
-    },
-    {
-        nome: 'AquinozBot',
-        descricao: 'Assistente educacional no Telegram voltado para acessibilidade. Processa PDFs e links, convertendo-os em resumos e áudios com um custo baixissimo de tokens e de internet.',
-        imagens: ['aquinozBot/aquinozBot.jpeg','aquinozBot/aquinozBot3.png','aquinozBot/aquinozBot2.jpeg'],
-        titulos: ['Resumo em Áudios','Obtendo conteúdos por meio de PDFs e Links','Uso de áudios para realizar perguntas'],
-        techs: ['Python', 'Telegram API', 'IA'],
-        github: 'https://github.com/ArthurThuko/Aquinoz_Bot',
-        status: 'manutencao'
-    },
-    {
-        nome: 'FinTrack',
-        descricao: 'Ferramenta de gestão financeira com verificações de saldo, histórico de transações e estatísticas em tempo real.',
-        imagens: ['fintrack/fintrack.png', 'fintrack/fintrack2.png', 'fintrack/fintrack3.png','fintrack/fintrack4.png'],
-        titulos: ['Dashboard', 'Histórico', 'Dashboard Mobile', 'Histórico Mobile'],
-        techs: ['Vue.js', 'Laravel', 'Postgres', 'Tailwind'],
-        github: 'https://github.com/Elliton-Luis/fintrack'
-    },
-    {
-        nome: 'NeuroZen',
-        descricao: 'Auxilia profissionais da saúde mental a acompanhar pacientes com hábitos gamificados, badges e avatares.',
-        imagens: ['neuroZen/neuroZen1.png','neuroZen/neuroZen2.png','neuroZen/neurozen1.jpeg','neuroZen/neurozen3.jpeg','neuroZen/neuroZen4.png','neuroZen/neuroZen5.png'],
-        titulos: ['Tela para a seleção da condição que mais condiz com seu estado atual','Tela de Hábitos', 'Artigos', 'Avatares', 'Badges'],
-        techs: ['Laravel', 'Livewire', 'Blade', 'Alpine.js', 'Tailwind'],
-        github: '',
-        status: 'privado' 
     },
     {
         nome: 'AlphaLanches',
@@ -55,14 +21,6 @@ const projetos = ref([
         status: 'privado' 
     },
     {
-        nome: 'Horizo',
-        descricao: 'Dose matinal de informação: aplicação que compila e exibe os dados mais relevantes do cenário nacional.',
-        imagens: ['horizo/horizo.jpeg'],
-        titulos: ['Resumo de Notícias'],
-        techs: ['Laravel', 'Blade', 'Tailwind'],
-        github: 'https://github.com/Elliton-Luis/horizo'
-    },
-    {
         nome: 'AlphaControl',
         descricao: 'Sistema desktop projetado para automação de processos locais e controle sistêmico focado em hardware.',
         imagens: ['alphaControl/alphaControl.png'],
@@ -71,14 +29,14 @@ const projetos = ref([
         github: 'https://github.com/ArthurThuko/AlphaControl'
     },
     {
-        nome: 'Vitória Vidros',
-        descricao: 'Sistema integrado de gestão, acompanhamento de ordens de serviço e geração de orçamentos para vidraçaria.',
-        imagens: ['vitoriaVidros/vitoriaVidros.jpeg', 'vitoriaVidros/vitoriaVidros_os.jpeg'],
-        titulos: ['Dashboard', 'Ordens de Serviço'],
-        techs: ['Laravel', 'Livewire', 'Blade', 'Tailwind', 'Alpine.js'],
-        github: '',
-        status: 'privado' 
+        nome: 'AlphaControl',
+        descricao: 'Sistema desktop projetado para automação de processos locais e controle sistêmico focado em hardware.',
+        imagens: ['alphaControl/alphaControl.png'],
+        titulos: ['Painel de Controle'],
+        techs: ['Java', 'Swing'],
+        github: 'https://github.com/ArthurThuko/AlphaControl'
     }
+
 ]);
 
 const getStatusBadge = (status) => {

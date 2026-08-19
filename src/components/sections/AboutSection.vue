@@ -18,13 +18,6 @@ const habilidades = ref([
         texto: 'text-[#111111] dark:text-[#ffffff]'
     },
     { 
-        nome: 'AppSec Básica', 
-        icone: 'bi-shield-check', 
-        cor: 'text-[#4a90e2]',
-        bg: 'bg-[#ffffff] dark:bg-[#111111]',
-        texto: 'text-[#111111] dark:text-[#ffffff]'
-    },
-    { 
         nome: 'Gitflow & Commits', 
         icone: 'bi-git', 
         cor: 'text-[#f14e32]',
@@ -93,7 +86,7 @@ const redesSociais = [
                 </div>
             </div>
 
-            <!-- Container da Mentalidade + Terminal -->
+            <!-- Container APENAS da Mentalidade -->
             <div class="relative group">
                 <div class="absolute inset-0 dark:border-[#2a2a2a] translate-x-2 translate-y-2 transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3"></div>
                 
@@ -107,14 +100,15 @@ const redesSociais = [
                                 <span class="text-[#FFD60A] mr-3 animate-pulse">_</span> Mentalidade
                             </h2>
                             <p class="text-base md:text-lg leading-relaxed font-sans font-light text-[#f3f3f3]">
-                                Construo a base do meu conhecimento buscando resolver problemas visíveis e palpáveis. Sou um desenvolvedor prático, e <span class="bg-[#FFD60A] text-[#111111] px-2 py-0.5 font-bold font-mono text-base shadow-[2px_2px_0px_0px_#ffffff]">meu objetivo</span>
-                                é entregar soluções funcionais e limpas. Meu foco hoje não é ter apenas a teoria, mas aplicar ativamente o <strong class="text-[#ffffff] border-b-2 border-[#FFD60A] pb-0.5">Pensamento Crítico</strong>, <strong class="text-[#ffffff] border-b-2 border-[#FFD60A] pb-0.5">Arquitetura Desacoplada</strong> e criar fluxos de automação na linha de comando que agilizam meu processo de desenvolvimento.
+                                Eu quero trabalhar, fazer bem o meu trabalho e continuar aprendendo. Gosto de estar em lugares difíceis porque é neles que a evolução acontece. Como desenvolvedor, <span class="bg-[#FFD60A] text-[#111111] px-2 py-0.5 font-bold font-mono text-base shadow-[2px_2px_0px_0px_#ffffff]">meu objetivo</span> é entregar código que funciona. Sem usar termos complexos para parecer superior, sou apenas alguém que estuda bastante, gosta de resolver problemas reais no terminal ou na web, e foca em terminar o dia com o trabalho entregue.
                             </p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Componente Terminal -->
+            <!-- Componente Terminal ISOLADO (Livre da camada invisível) -->
+            <div class="relative z-10">
                 <Terminal />
             </div>
 

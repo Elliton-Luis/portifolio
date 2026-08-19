@@ -32,3 +32,4 @@ commit_pattern_pt.md
 
 # Ignorado automaticamente pelo Synapse CLI
 .env
+.ai-jail
